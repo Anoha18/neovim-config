@@ -7,6 +7,7 @@ vim.opt.smartindent = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard:append("unnamedplus")
 vim.opt.fixeol = false
 vim.opt.completeopt = 'menuone,noselect'
 
@@ -65,6 +66,8 @@ vim.opt.winblend = 0
 vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
 vim.opt.background = 'dark'
+vim.opt.signcolumn = "yes"
 
 vim.g.spellfile_URL = "http://ftp.nluug.nl/pub/vim/runtime/spell/"
 
+vim.opt.swapfile = false

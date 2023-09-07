@@ -1,18 +1,24 @@
-local status, gitsigns = pcall(require, "gitsigns")
-if (not status) then
-  print("Gitsigns not found")
-  return
-end
+return {
+  "lewis6991/gitsigns.nvim",
+  event = { "User FileOpened", "BufReadPre", "BufNewFile" },
+  cmd = "Gitsigns",
+  config = function()
+    local status, gitsigns = pcall(require, "gitsigns")
+    if (not status) then
+      print("Gitsigns not found")
+      return
+    end
 
-gitsigns.setup({
-  signs = {
-    add = { text = '+' }
-  },
-  current_line_blame = true,
-  signcolumn = true,
-  watch_gitdir = {
-    interval = 1000,
-    follow_files = true,
-  },
-})
-
+    gitsigns.setup({
+      signs = {
+        add = { text = '+' }
+      },
+      current_line_blame = true,
+      signcolumn = true,
+      watch_gitdir = {
+        interval = 1000,
+        follow_files = true,
+      },
+    })
+  end
+}
