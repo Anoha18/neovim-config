@@ -7,19 +7,20 @@ vim.opt.smartindent = true
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.clipboard = 'unnamedplus'
-vim.opt.clipboard:append("unnamedplus")
+vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
 vim.opt.fixeol = false
 vim.opt.completeopt = 'menuone,noselect'
+vim.api.nvim_command [[ set ff=dos]]
 
 --[[ Encdodings ]] --
 vim.scriptencoding = 'utf-8'
 vim.opt.encoding = 'utf-8'
 vim.opt.fileencoding = 'utf-8'
-vim.opt.fileformats = 'dos'
+vim.opt.fileformats = 'dos,unix'
 vim.opt.fileformat = 'dos'
 
 vim.wo.number = true
-vim.o.syntax = 'on'
+vim.opt.syntax = 'on'
 
 vim.opt.title = true
 vim.opt.autoindent = true

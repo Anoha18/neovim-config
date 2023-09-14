@@ -10,13 +10,13 @@ return {
 
     material.setup {
       plugins = {
-        -- "telescope",
-        -- "nvim-web-devicons",
+        "telescope",
+        "nvim-web-devicons",
         -- "nvim-tree",
         -- "lspsaga",
         -- "indent-blankline",
         -- "gitsigns",
-        -- "nvim-cmp"
+        "nvim-cmp"
       },
       disable = {
         background = true,

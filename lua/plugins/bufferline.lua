@@ -1,7 +1,9 @@
 return {
   "akinsho/nvim-bufferline.lua",
   version = "*",
-  dependencies = "nvim-tree/nvim-web-devicons",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
   config = function()
     local status, bufferline = pcall(require, "bufferline")
     if (not status) then
@@ -19,14 +21,14 @@ return {
         show_buffer_close_icons = true,
         show_close_icon = false,
         color_icons = true,
-        -- diagnostics = "nvim_lsp"
+        diagnostics = "nvim_lsp"
       },
       highlights = {
         separator = {
-          fg = c.editor.bg_alt
+          fg = c.editor.disabled
         },
         separator_selected = {
-          fg = c.editor.bg_alt
+          fg = c.editor.disabled
         },
         background = {
           fg = c.editor.disabled,

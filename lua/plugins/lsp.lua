@@ -15,7 +15,7 @@ return {
 
     lspconfig.volar.setup {
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json' },
-      cmd = { "vue-language-server.cmd", "--stdio" }
+      cmd = { "vue-language-server.cmd", "--stdio" },
     }
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()

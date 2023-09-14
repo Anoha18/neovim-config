@@ -41,6 +41,7 @@ return {
           grouped = true,
           previewer = false,
           theme = "dropdown",
+          initial_mode = "normal",
           layout_config = {
             width = 0.8,
             height = 0.8

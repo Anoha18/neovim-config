@@ -7,6 +7,7 @@ return {
       return
     end
 
+    local null_ls_utils = require("null-ls.utils")
     local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
     local fmt = null_ls.builtins.formatting
@@ -15,6 +16,7 @@ return {
     local cmp = null_ls.builtins.completion
 
     null_ls.setup({
+      -- root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
       sources = {
 
         -- Formatting
