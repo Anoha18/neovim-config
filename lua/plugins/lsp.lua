@@ -32,10 +32,6 @@ return {
 			cmd = { "css-lsp.cmd", "--stdio" },
 		})
 
-		-- lspconfig.html.setup({
-		--   cmd = { "html-lsp.cmd", "--stdio" },
-		-- })
-
 		lspconfig.lua_ls.setup({
 			cmd = { "lua-language-server.cmd", "--stdio" },
 		})
@@ -51,9 +47,5 @@ return {
 		lspconfig.tailwindcss.setup({
 			cmd = { "tailwindcss-language-server.cmd", "--stdio" },
 		})
-
-		-- lspconfig.bashls.setup({
-		--   cmd = { "bash-language-server.cmd", "start" },
-		-- })
 	end,
 }

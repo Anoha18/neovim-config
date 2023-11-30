@@ -26,7 +26,28 @@ lazy.setup("plugins", {
 		missing = true,
 		colorscheme = { "material" },
 	},
+	checker = { enabled = true, notify = false },
 	change_detection = {
+		enabled = true,
 		notify = false,
+	},
+	performance = {
+		cache = {
+			enabled = true,
+		},
+		rtp = {
+			-- disable some rtp plugins
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"rplugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
 	},
 })
