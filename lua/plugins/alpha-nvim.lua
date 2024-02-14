@@ -44,17 +44,14 @@ return {
 
 		local greeting = getGreeting(username)
 		dashboard.section.header.val = vim.split(logo .. "\n" .. greeting, "\n")
+    -- stylua: ignore
 		dashboard.section.buttons.val = {
 			dashboard.button("n", " " .. " New file", ":ene <BAR> startinsert <CR>"),
 			dashboard.button("f", " " .. " Find file", ":Telescope find_files <CR>"),
 			dashboard.button("g", "󰷾 " .. " Find text", ":Telescope live_grep <CR>"),
 			dashboard.button("b", " " .. " File browser", ":Telescope file_browser <CR>"),
 			dashboard.button("s", "󰑓 " .. " Restore session", ":lua require('persistence').load()<CR>"),
-			dashboard.button(
-				"S",
-				"󱞳 " .. " Restore last session",
-				":lua require('persistence').load({ last = true })<CR>"
-			),
+			dashboard.button("S",	"󱞳 " .. " Restore last session",":lua require('persistence').load({ last = true })<CR>"),
 			dashboard.button("r", "󰄉 " .. " Recent files", ":Telescope oldfiles <CR>"),
 			dashboard.button("c", " " .. " Config", ":e $MYVIMRC <CR>"),
 			dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
