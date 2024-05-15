@@ -33,6 +33,12 @@ return {
 				"markdown",
 			},
 
+      matchup = {
+        -- enables vim-matchup integration
+        enable = true,
+        enable_quotes = true,
+      },
+
 			sync_install = false,
 			auto_install = true,
 			highlight = {
