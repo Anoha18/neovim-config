@@ -1,6 +1,6 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	tag = "0.1.6",
+	tag = "0.1.8",
 	dependencies = {
 		"nvim-telescope/telescope-file-browser.nvim",
 		"nvim-lua/plenary.nvim",
@@ -17,6 +17,8 @@ return {
 			print("Telescope builtin not found")
 			return
 		end
+
+		local previewers = require("telescope.previewers")
 
 		local fb_actions = require("telescope").extensions.file_browser.actions
 
@@ -64,11 +66,11 @@ return {
 				winblend = 0,
 				border = {},
 				color_devicons = true,
-				file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-				grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
-				qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+				file_previewer = previewers.vim_buffer_cat.new,
+				grep_previewer = previewers.vim_buffer_vimgrep.new,
+				qflist_previewer = previewers.vim_buffer_qflist.new,
 				-- Developer configurations: Not meant for general override
-				buffer_previewer_maker = require("telescope.previewers").buffer_previewer_maker,
+				buffer_previewer_maker = previewers.buffer_previewer_maker,
 			},
 			extensions = {
 				file_browser = {

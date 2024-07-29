@@ -31,13 +31,14 @@ return {
 				"comment",
 				"regex",
 				"markdown",
+				"bash",
 			},
 
-      matchup = {
-        -- enables vim-matchup integration
-        enable = true,
-        enable_quotes = true,
-      },
+			matchup = {
+				-- enables vim-matchup integration
+				enable = true,
+				enable_quotes = true,
+			},
 
 			sync_install = false,
 			auto_install = true,
@@ -47,9 +48,6 @@ return {
 			indent = {
 				enable = true,
 				disable = {},
-			},
-			autotag = {
-				enable = true,
 			},
 		})
 

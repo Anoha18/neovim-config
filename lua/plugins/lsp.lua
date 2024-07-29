@@ -8,20 +8,35 @@ return {
 		end
 
 		lspconfig.tsserver.setup({
-			filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
+			filetypes = {
+				"typescript",
+				"javascript",
+				"vue",
+				-- "typescriptreact",
+				-- "typescript.tsx"
+			},
+			init_options = {
+				plugins = {
+					{
+						name = "@vue/typescript-plugin",
+						location = "C:/Users/anoha/AppData/Roaming/npm/node_modules/@vue/typescript-plugin",
+						languages = { "javascript", "typescript", "vue" },
+					},
+				},
+			},
 			cmd = { "typescript-language-server.cmd", "--stdio" },
-			root_dir = function()
-				return vim.loop.cwd()
-			end,
+			-- root_dir = function()
+			-- 	return vim.loop.cwd()
+			-- end,
 		})
 
 		lspconfig.volar.setup({
-			filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "json" },
+			filetypes = { "vue" },
 			cmd = { "vue-language-server.cmd", "--stdio" },
-			on_attach = function(client)
-				client.resolved_capabilities.document_formatting = false
-				client.resolved_capabilities.document_range_formatting = false
-			end,
+			-- on_attach = function(client)
+			-- 	client.resolved_capabilities.document_formatting = false
+			-- 	client.resolved_capabilities.document_range_formatting = false
+			-- end,
 		})
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -46,6 +61,10 @@ return {
 
 		lspconfig.tailwindcss.setup({
 			cmd = { "tailwindcss-language-server.cmd", "--stdio" },
+		})
+
+		lspconfig.bashls.setup({
+			cmd = { "bash-language-server.cmd", "--stdio" },
 		})
 	end,
 }

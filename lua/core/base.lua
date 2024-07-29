@@ -66,7 +66,7 @@ vim.opt.pumblend = 5
 vim.opt.background = "dark"
 vim.opt.signcolumn = "yes"
 
-vim.g.spellfile_URL = "http://ftp.nluug.nl/pub/vim/runtime/spell/"
+vim.g.spellfile_URL = "https://ftp.nluug.nl/pub/vim/runtime/spell/"
 vim.opt.spelllang = "en_us,ru"
 vim.opt.spell = true
 
