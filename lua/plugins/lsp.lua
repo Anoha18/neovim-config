@@ -9,11 +9,13 @@ return {
 
 		lspconfig.tsserver.setup({
 			filetypes = {
-				"typescript",
 				"javascript",
+				"javascriptreact",
+				"javascript.jsx",
+				"typescript",
+				"typescriptreact",
+				"typescript.tsx",
 				"vue",
-				-- "typescriptreact",
-				-- "typescript.tsx"
 			},
 			init_options = {
 				plugins = {
@@ -33,10 +35,6 @@ return {
 		lspconfig.volar.setup({
 			filetypes = { "vue" },
 			cmd = { "vue-language-server.cmd", "--stdio" },
-			-- on_attach = function(client)
-			-- 	client.resolved_capabilities.document_formatting = false
-			-- 	client.resolved_capabilities.document_range_formatting = false
-			-- end,
 		})
 
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
