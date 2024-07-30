@@ -1,5 +1,10 @@
 return {
-	"jose-elias-alvarez/null-ls.nvim",
+	"nvimtools/none-ls.nvim",
+	-- "jose-elias-alvarez/null-ls.nvim",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvimtools/none-ls-extras.nvim",
+	},
 	config = function()
 		local status, null_ls = pcall(require, "null-ls")
 		if not status then
@@ -11,35 +16,31 @@ return {
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 		local fmt = null_ls.builtins.formatting
-		local dgn = null_ls.builtins.diagnostics
-		local cda = null_ls.builtins.code_actions
+		-- local dgn = null_ls.builtins.diagnostics
+		-- local cda = null_ls.builtins.code_actions
 		local cmp = null_ls.builtins.completion
 
 		null_ls.setup({
-			-- root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
+			root_dir = null_ls_utils.root_pattern(".null-ls-root", "Makefile", ".git", "package.json"),
 			sources = {
-
 				-- Formatting
-				-- fmt.prettierd,
-				fmt.eslint_d,
-				-- fmt.prettier.with({
-				--   filetypes = { "html", "json", "yaml", "markdown", "javascript", "typescript" },
-				-- }),
-				fmt.stylua,
+				-- fmt.eslint_d,
+				-- fmt.stylua,
+				require("none-ls.formatting.eslint_d"),
 
 				-- Diagnostics
-				dgn.eslint_d,
-				-- dgn.shellcheck,
-				-- dgn.pylint.with({
-				--   method = null_ls.methods.DIAGNOSTICS_ON_SAVE,
+				-- dgn.eslint_d,
+				-- require("none-ls.diagnostics.eslint_d").with({
+				--   command = os.getenv('LOCALAPPDATA')..'/nvim-data/mason/bin/eslint_d.cmd'
 				-- }),
-
+				require("none-ls.diagnostics.eslint_d"),
 				-- Code Actions
-				cda.eslint_d,
-				-- cda.shellcheck,
+				require("none-ls.code_actions.eslint_d"),
+				-- cda.eslint_d,
 
 				-- Completions
 				cmp.luasnip,
+				cmp.spell,
 			},
 			debug = true,
 			on_attach = function(client, bufnr)
