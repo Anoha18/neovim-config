@@ -42,7 +42,7 @@ return {
 
 		lspconfig.cssls.setup({
 			capabilities = capabilities,
-			cmd = { "css-lsp.cmd", "--stdio" },
+			cmd = { "vscode-css-language-server.cmd", "--stdio" },
 		})
 
 		lspconfig.lua_ls.setup({

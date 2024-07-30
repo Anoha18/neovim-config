@@ -16,7 +16,9 @@ return {
 			return
 		end
 
-		mason.setup()
+		mason.setup({
+			PATH = "prepend",
+		})
 
 		lspconfig.setup()
 	end,
