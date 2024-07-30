@@ -7,7 +7,11 @@ return {
 			return
 		end
 
+    local cmpCapabilities = require("cmp_nvim_lsp").default_capabilities()
+
 		lspconfig.tsserver.setup({
+      capabilities = cmpCapabilities,
+
 			filetypes = {
 				"javascript",
 				"javascriptreact",
