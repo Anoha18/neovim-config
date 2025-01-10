@@ -22,10 +22,10 @@ lazy.setup("plugins", {
 	defaults = {
 		lazy = false,
 	},
-	install = {
-		missing = true,
-		colorscheme = { "material" },
-	},
+	-- install = {
+	-- 	missing = true,
+	-- 	colorscheme = { "sonokai" },
+	-- },
 	checker = { enabled = true, notify = false },
 	change_detection = {
 		enabled = true,

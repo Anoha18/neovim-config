@@ -121,5 +121,6 @@ return {
 		keymap.set("n", "gd", builtin.lsp_definitions, opts)
 
 		telescope.load_extension("file_browser")
+    -- telescope.load_extension("noice")
 	end,
 }

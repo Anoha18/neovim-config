@@ -1,5 +1,9 @@
 return {
-	"nvimdev/lspsaga.nvim",
+	'nvimdev/lspsaga.nvim',
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter', -- optional
+    'nvim-tree/nvim-web-devicons',     -- optional
+  },
 	config = function()
 		local status, lspsaga = pcall(require, "lspsaga")
 		if not status then
@@ -7,8 +11,6 @@ return {
 			return
 		end
 
-		lspsaga.setup({
-			server_filetype_map = {},
-		})
+		lspsaga.setup({})
 	end,
 }

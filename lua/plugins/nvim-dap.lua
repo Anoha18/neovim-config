@@ -1,5 +1,6 @@
 return {
 	"mfussenegger/nvim-dap",
+  enabled = false,
 	config = function()
 		local status, dap = pcall(require, "dap")
 		if not status then

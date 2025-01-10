@@ -29,20 +29,15 @@ return {
 				require("none-ls.formatting.eslint_d"),
 
 				-- Diagnostics
-				-- dgn.eslint_d,
-				-- require("none-ls.diagnostics.eslint_d").with({
-				--   command = os.getenv('LOCALAPPDATA')..'/nvim-data/mason/bin/eslint_d.cmd'
-				-- }),
 				require("none-ls.diagnostics.eslint_d"),
 				-- Code Actions
 				require("none-ls.code_actions.eslint_d"),
 				-- cda.eslint_d,
 
 				-- Completions
-				cmp.luasnip,
-				cmp.spell,
+				-- cmp.luasnip,
 			},
-			debug = true,
+			-- debug = true,
 			on_attach = function(client, bufnr)
 				if client.supports_method("textDocument/formatting") then
 					vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })

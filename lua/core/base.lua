@@ -56,8 +56,6 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 
 vim.opt.formatoptions:append({ "r" })
 
-vim.g.material_style = "darker"
-
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.opt.winblend = 0
@@ -71,3 +69,15 @@ vim.opt.spelllang = "en_us,ru"
 vim.opt.spell = true
 
 vim.opt.swapfile = false
+
+vim.opt.laststatus = 0
+vim.api.nvim_set_hl(0 , 'Statusline', {link = 'Normal'})
+vim.api.nvim_set_hl(0 , 'StatuslineNC', {link = 'Normal'})
+local str = string.rep('-', vim.api.nvim_win_get_width(0))
+vim.opt.statusline = str
+
+vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
+  pattern = "*.ejs",
+  command = "set filetype=html"
+})
+
