@@ -1,12 +1,12 @@
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v3.x",
-	lazy = false,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
 		"MunifTanjim/nui.nvim",
 	},
+  lazy = false,
 	config = function()
 		local status, neotree = pcall(require, "neo-tree")
 		if not status then
@@ -14,10 +14,15 @@ return {
 			return
 		end
 
-		vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
-		vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
-		vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
-		vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
+    -- vim.diagnostic.config("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+	  -- vim.diagnostic.config("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+		-- vim.diagnostic.config("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+		-- vim.diagnostic.config("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
+
+		-- vim.fn.sign_define("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" })
+		-- vim.fn.sign_define("DiagnosticSignWarn", { text = " ", texthl = "DiagnosticSignWarn" })
+		-- vim.fn.sign_define("DiagnosticSignInfo", { text = " ", texthl = "DiagnosticSignInfo" })
+		-- vim.fn.sign_define("DiagnosticSignHint", { text = "󰌵", texthl = "DiagnosticSignHint" })
 
 		neotree.setup({
 			close_if_last_window = true,

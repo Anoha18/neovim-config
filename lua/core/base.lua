@@ -8,6 +8,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
+vim.opt.fixendofline = false
 vim.opt.fixeol = false
 vim.opt.completeopt = "menuone,noselect"
 vim.api.nvim_command([[ set ff=dos]])
@@ -16,7 +17,7 @@ vim.api.nvim_command([[ set ff=dos]])
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
-vim.opt.fileformats = "dos,unix"
+vim.opt.fileformats = "dos,unix,mac"
 vim.opt.fileformat = "dos"
 
 vim.wo.number = true

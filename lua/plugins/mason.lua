@@ -3,6 +3,7 @@ return {
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 	},
+  version = '2.0.0',
 	config = function()
 		local status, mason = pcall(require, "mason")
 		if not status then

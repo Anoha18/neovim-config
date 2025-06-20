@@ -1,6 +1,5 @@
 return {
 	"marko-cerovac/material.nvim",
-	priority = 1000,
   enabled = false,
 	config = function()
 		local status, material = pcall(require, "material")

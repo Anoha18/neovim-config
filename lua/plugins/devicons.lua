@@ -8,12 +8,6 @@ return {
 		end
 
 		icons.setup({
-			override = {
-				["node_modules"] = {
-					icon = "",
-					name = "Node modules",
-				},
-			},
 			default = true,
 			color_icons = true,
 		})

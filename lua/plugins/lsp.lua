@@ -14,10 +14,7 @@ return {
 		capabilities.textDocument.completion.completionItem.snippetSupport = true
 
     local cmpCapabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-    local mason_registry = require('mason-registry')
     local util = require("lspconfig.util")
-
-    local vue_language_server_path = mason_registry.get_package('vue-language-server'):get_install_path() .. '/node_modules/@vue/language-server'
 
 		lspconfig.ts_ls.setup({
       capabilities = cmpCapabilities,
@@ -34,7 +31,7 @@ return {
 				plugins = {
 					{
 						name = "@vue/typescript-plugin",
-            location = vue_language_server_path,
+            location = vim.env.MASON .. "/packages/vue-language-server/node_modules/@vue/language-server",
 						languages = { "vue" },
 					},
 				},
@@ -102,7 +99,7 @@ return {
       },
     })
 
-    local angularls_path = mason_registry.get_package('angular-language-server'):get_install_path()
+    local angularls_path = vim.env.MASON .. '/packages/angular-language-server'
     local angular_cmd = {
       'ngserver.cmd',
       '--stdio',
@@ -124,6 +121,11 @@ return {
       on_new_config = function(new_config)
         new_config.cmd = angular_cmd
       end,
+    }
+
+    lspconfig.svelte.setup {
+      capabilities = cmpCapabilities,
+      cmd = { "svelteserver.cmd", "--stdio" }
     }
 	end,
 }
