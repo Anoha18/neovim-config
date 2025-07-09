@@ -42,8 +42,6 @@ return {
 				{ name = "buffer" },
 				{ name = "path" },
 				{ name = "emoji" },
-			}, {
-				{ name = "buffer" },
 			}),
 			formatting = {
 				format = lspkind.cmp_format({

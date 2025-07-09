@@ -1,10 +1,6 @@
 return {
 	"akinsho/nvim-bufferline.lua",
 	version = "*",
-	dependencies = {
-		"nvim-tree/nvim-web-devicons",
-    "sainnhe/sonokai"
-	},
   event = "VeryLazy",
 	config = function()
 		local status, bufferline = pcall(require, "bufferline")

@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+  lazy = false,
   dependencies = {
     "williamboman/mason.nvim"
   },
@@ -10,14 +11,20 @@ return {
 			return
 		end
 
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities.textDocument.completion.completionItem.snippetSupport = true
+		-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+		-- capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    local cmpCapabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    -- local cmpCapabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
+    local cmpCapabilities = vim.tbl_deep_extend("force",
+    vim.lsp.protocol.make_client_capabilities(),
+      require('cmp_nvim_lsp').default_capabilities()
+    )
+    cmpCapabilities.workspace.didChangeWatchedFiles.dynamicRegistration = false
+    -- local cmpCapabilities = require("cmp_nvim_lsp").default_capabilities()
     local util = require("lspconfig.util")
 
-		lspconfig.ts_ls.setup({
-      capabilities = cmpCapabilities,
+    vim.lsp.config('ts_ls', {
+      -- capabilities = cmpCapabilities,
 			filetypes = {
 				"javascript",
 				"javascriptreact",
@@ -36,56 +43,92 @@ return {
 					},
 				},
 			},
+      settings = {
+        -- TODO: Работает медленно и неудобно, вернуть как ипсправят
+        -- typescript = {
+          -- tsserver = {
+          --   useSyntaxServer = false,
+          -- },
+          -- inlayHints = {
+          --   includeInlayParameterNameHints = 'all',
+          --   includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+          --   includeInlayFunctionParameterTypeHints = true,
+          --   includeInlayVariableTypeHints = true,
+          --   includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+          --   includeInlayPropertyDeclarationTypeHints = true,
+          --   includeInlayFunctionLikeReturnTypeHints = true,
+          --   includeInlayEnumMemberValueHints = true,
+          -- },
+        -- },
+      },
 			cmd = { "typescript-language-server.cmd", "--stdio" },
-      root_dir = util.root_pattern(
-        'package.json'
-      ),
-		})
+    })
 
-		lspconfig.volar.setup({
-      capabilities = cmpCapabilities,
+
+    vim.lsp.config('vue_ls', {
+      -- capabilities = cmpCapabilities,
       filetypes = {
         'vue',
       },
-      root_dir = util.root_pattern(
-        'package.json'
-      ),
 			cmd = { "vue-language-server.cmd", "--stdio" },
-		})
+      -- TODO: Не работает с hybridMode=false
+      -- settings = {
+      --   typescript = {
+      --     inlayHints = {
+      --       enumMemberValues = {
+      --         enabled = true,
+      --       },
+      --       functionLikeReturnTypes = {
+      --         enabled = true,
+      --       },
+      --       propertyDeclarationTypes = {
+      --         enabled = true,
+      --       },
+      --       parameterTypes = {
+      --         enabled = true,
+      --         suppressWhenArgumentMatchesName = true,
+      --       },
+      --       variableTypes = {
+      --         enabled = true,
+      --       },
+      --     },
+      --   },
+      -- },
+    })
 
-		lspconfig.cssls.setup({
-      capabilities = cmpCapabilities,
+    vim.lsp.config('cssls', {
+      -- capabilities = cmpCapabilities,
 			cmd = { "vscode-css-language-server.cmd", "--stdio" },
-		})
+    })
 
-		lspconfig.lua_ls.setup({
-      capabilities = cmpCapabilities,
+    vim.lsp.config('lua_ls', {
+      -- capabilities = cmpCapabilities,
 			cmd = { "lua-language-server.cmd", "--stdio" },
-		})
+    })
 
-		lspconfig.docker_compose_language_service.setup({
-      capabilities = cmpCapabilities,
+		vim.lsp.config('docker_compose_language_service', {
+      -- capabilities = cmpCapabilities,
 			cmd = { "docker-compose-langserver.cmd", "--stdio" },
 		})
 
-		lspconfig.dockerls.setup({
-      capabilities = cmpCapabilities,
+		vim.lsp.config('dockerls', {
+      -- capabilities = cmpCapabilities,
 			cmd = { "docker-langserver.cmd", "--stdio" },
 		})
 
-		lspconfig.tailwindcss.setup({
-      capabilities = cmpCapabilities,
+		vim.lsp.config('tailwindcss', {
+      -- capabilities = cmpCapabilities,
 			cmd = { "tailwindcss-language-server.cmd", "--stdio" },
 		})
 
-		lspconfig.bashls.setup({
-      capabilities = cmpCapabilities,
+		vim.lsp.config('bashls', {
+      -- capabilities = cmpCapabilities,
 			cmd = { "bash-language-server.cmd" },
 		})
 
-    lspconfig.html.setup({
+    vim.lsp.config('html', {
       cmd = { "vscode-html-language-server.cmd", "--stdio" },
-      capabilities = cmpCapabilities,
+      -- capabilities = cmpCapabilities,
       filetypes = {
         'django-html',
         'ejs',
@@ -115,17 +158,29 @@ return {
       }, ','),
     }
 
-    lspconfig.angularls.setup{
-      capabilities = cmpCapabilities,
+    vim.lsp.config('angularls', {
+      -- capabilities = cmpCapabilities,
       cmd = angular_cmd,
       on_new_config = function(new_config)
         new_config.cmd = angular_cmd
       end,
-    }
+    })
 
-    lspconfig.svelte.setup {
-      capabilities = cmpCapabilities,
+    vim.lsp.config('svelte', {
+      -- capabilities = cmpCapabilities,
       cmd = { "svelteserver.cmd", "--stdio" }
-    }
+    })
+
+    vim.lsp.enable('ts_ls')
+    vim.lsp.enable('vue_ls')
+    vim.lsp.enable('cssls')
+    vim.lsp.enable('lua_ls')
+    vim.lsp.enable('docker_compose_language_service')
+    vim.lsp.enable('dockerls')
+    vim.lsp.enable('tailwindcss')
+    vim.lsp.enable('bashls')
+    vim.lsp.enable('html')
+    vim.lsp.enable('angularls')
+    vim.lsp.enable('svelte')
 	end,
 }

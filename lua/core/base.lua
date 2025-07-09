@@ -82,3 +82,4 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
   command = "set filetype=html"
 })
 
+vim.lsp.inlay_hint.enable()
