@@ -1,13 +1,14 @@
 vim.cmd("autocmd!")
 
+-- TAB WIDTH
+vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.smartindent = true
 
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-vim.opt.clipboard = "unnamedplus"
-vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
+vim.opt.clipboard="unnamedplus"
 vim.opt.fixendofline = false
 vim.opt.fixeol = false
 vim.opt.completeopt = "menuone,noselect"
@@ -17,8 +18,8 @@ vim.api.nvim_command([[ set ff=dos]])
 vim.scriptencoding = "utf-8"
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
-vim.opt.fileformats = "dos,unix,mac"
-vim.opt.fileformat = "dos"
+vim.opt.fileformats = "unix,dos,mac"
+vim.opt.fileformat = "unix"
 
 vim.wo.number = true
 vim.opt.syntax = "on"
@@ -37,8 +38,6 @@ vim.opt.shell = "fish"
 vim.opt.inccommand = "split"
 vim.opt.smarttab = true
 vim.opt.breakindent = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
 vim.opt.ai = true
 vim.opt.si = true
 vim.opt.wrap = false

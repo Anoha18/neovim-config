@@ -31,7 +31,7 @@ keymap.set("", "sl", "<C-w>l")
 local opts = { noremap = true, silent = true }
 
 -- Definition maps
-keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>")
+keymap.set("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", opts)
 keymap.set("n", "gR", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
 keymap.set("n", "ga", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
 keymap.set("n", "sd", "<cmd>Lspsaga show_line_diagnostics<cr>", opts)

@@ -1,5 +1,8 @@
 return {
   "nvim-telescope/telescope-file-browser.nvim",
-  branch = "master",
   lazy = true,
+  dependencies = {
+    "nvim-telescope/telescope.nvim",
+    "nvim-lua/plenary.nvim"
+  }
 }
