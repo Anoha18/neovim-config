@@ -2,7 +2,11 @@ return {
 	"nvim-telescope/telescope.nvim",
   -- branch = "master",
 	tag = "0.1.8",
-  dependencies = { 'nvim-lua/plenary.nvim' },
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    'ThePrimeagen/git-worktree.nvim',
+  },
 	config = function()
 		local status, telescope = pcall(require, "telescope")
 		if not status then
@@ -15,6 +19,9 @@ return {
 			print("Telescope builtin not found")
 			return
 		end
+
+    require('telescope').load_extension('fzf')
+    require('telescope').load_extension('git_worktree')
 
 		local previewers = require("telescope.previewers")
 
@@ -46,19 +53,20 @@ return {
 				sorting_strategy = "ascending",
 				layout_strategy = "horizontal",
 				layout_config = {
+					width = 0.9,
+					height = 0.9,
+					preview_cutoff = 120,
+          prompt_position = "top",
 					horizontal = {
 						prompt_position = "top",
-						preview_width = 0.55,
-						results_width = 0.8,
+						preview_width = 0.6,
+						results_width = 0.4,
 					},
-					vertical = {
-						mirror = false,
-					},
-					width = 0.87,
-					height = 0.80,
-					preview_cutoff = 120,
+					-- vertical = {
+					-- 	mirror = false,
+					-- },
 				},
-				-- file_sorter = require("telescope.sorters").get_fuzzy_file,
+        file_sorter = require('telescope.sorters').get_fzy_sorter,
 				-- generic_sorter = require("telescope.sorters").get_generic_fuzzy_sorter,
 				path_display = { "truncate" },
 				winblend = 0,
@@ -82,8 +90,8 @@ return {
 					theme = "dropdown",
 					initial_mode = "normal",
 					layout_config = {
-						width = 0.8,
-						height = 0.8,
+						width = 0.9,
+						height = 0.9,
 					},
 					mappings = {
 						["i"] = {
@@ -99,6 +107,11 @@ return {
 						},
 					},
 				},
+        fzf = {
+          override_generic_sorter = false,
+          override_file_sorter = true,
+          case_mode = "smart_case",
+        }
 			},
 		})
 
@@ -113,7 +126,7 @@ return {
 		keymap.set("n", "fe", builtin.diagnostics, opts)
 		keymap.set("n", "fs", telescope.extensions.file_browser.file_browser, opts)
 		keymap.set("n", "gs", builtin.git_status, opts)
-		keymap.set("n", "gC", builtin.git_commits, opts)
+		keymap.set("n", "gco", builtin.git_commits, opts)
 		keymap.set("n", "gb", builtin.git_branches, opts)
 		keymap.set("n", "gr", builtin.lsp_references, opts)
 		keymap.set("n", "gd", builtin.lsp_definitions, opts)
