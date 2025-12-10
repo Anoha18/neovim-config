@@ -80,5 +80,3 @@ vim.api.nvim_create_autocmd({"BufRead", "BufNewFile"}, {
   pattern = "*.ejs",
   command = "set filetype=html"
 })
-
-vim.lsp.inlay_hint.enable()

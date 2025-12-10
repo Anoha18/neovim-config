@@ -66,12 +66,34 @@ return {
               vue_plugin,
             },
           },
+          enableMoveToFileCodeAction = true,
+        },
+        typescript = {
+          inlayHints = {
+            parameterNames = { enabled = "all" },      -- "none" | "literals" | "all"
+            parameterTypes = { enabled = true },
+            variableTypes = { enabled = true },
+            propertyDeclarationTypes = { enabled = true },
+            functionLikeReturnTypes = { enabled = true },
+            enumMemberValues = { enabled = true },
+          },
+        },
+      },
+      javascript = {
+        inlayHints = {
+          parameterNames = { enabled = "all" },
+          parameterTypes = { enabled = true },
+          variableTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          enumMemberValues = { enabled = true },
         },
       },
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     })
 
     vim.lsp.config('vue_ls', {
+      filetypes = { 'vue' },
       capabilities = capabilities,
       on_init = function(client)
         client.handlers['tsserver/request'] = function(_, result, context)
@@ -98,6 +120,17 @@ return {
             end)
         end
       end,
+      settings = {
+        vue = {
+          inlayHints = {
+            destructuredProps = { enabled = true },
+            inlineHandlerLoading = { enabled = true },
+            missingProps = { enabled = true },
+            optionsWrapper = { enabled = true },
+            vBindShorthand = { enabled = true },
+          },
+        },
+      }
     })
 
     vim.lsp.config('cssls', {
@@ -183,5 +216,7 @@ return {
     vim.lsp.enable('angularls')
     vim.lsp.enable('svelte')
     vim.lsp.enable('pyright')
+
+    vim.lsp.inlay_hint.enable()
 	end,
 }
