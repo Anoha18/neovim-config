@@ -11,59 +11,22 @@ return {
 			return
 		end
 
-		-- local capabilities = vim.lsp.protocol.make_client_capabilities()
-		-- capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-    -- local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-    -- Удалил ts_ls так как есть лучшая поддержка typescript через vtsls, которая хорошо работает вместе с vue-language-server
-    -- vim.lsp.config('ts_ls', {
-    --   capabilities = capabilities,
-			-- filetypes = {
-				-- "javascript",
-				-- "javascriptreact",
-				-- "javascript.jsx",
-				-- "typescript",
-				-- "typescriptreact",
-				-- "typescript.tsx",
-			-- },
-    --   settings = {
-        -- TODO: Работает медленно и неудобно, вернуть как ипсправят
-        -- typescript = {
-          -- tsserver = {
-          --   useSyntaxServer = false,
-          -- },
-          -- inlayHints = {
-          --   includeInlayParameterNameHints = 'all',
-          --   includeInlayParameterNameHintsWhenArgumentMatchesName = true,
-          --   includeInlayFunctionParameterTypeHints = true,
-          --   includeInlayVariableTypeHints = true,
-          --   includeInlayVariableTypeHintsWhenTypeMatchesName = true,
-          --   includeInlayPropertyDeclarationTypeHints = true,
-          --   includeInlayFunctionLikeReturnTypeHints = true,
-          --   includeInlayEnumMemberValueHints = true,
-          -- },
-        -- },
-      -- },
-			-- cmd = { "typescript-language-server", "--stdio" },
-    -- })
-
     local vue_language_server_path = vim.fn.expand '$MASON/packages' .. '/vue-language-server' .. '/node_modules/@vue/language-server'
-    local vue_plugin = {
-      name = '@vue/typescript-plugin',
-      location = vue_language_server_path,
-      languages = { 'vue' },
-      configNamespace = 'typescript',
-    }
 
     vim.lsp.config('vtsls', {
       settings = {
         vtsls = {
           tsserver = {
             globalPlugins = {
-              vue_plugin,
+              {
+                name = '@vue/typescript-plugin',
+                location = vue_language_server_path,
+                languages = { 'vue' },
+                configNamespace = 'typescript',
+              }
             },
           },
           enableMoveToFileCodeAction = true,
@@ -78,15 +41,15 @@ return {
             enumMemberValues = { enabled = true },
           },
         },
-      },
-      javascript = {
-        inlayHints = {
-          parameterNames = { enabled = "all" },
-          parameterTypes = { enabled = true },
-          variableTypes = { enabled = true },
-          propertyDeclarationTypes = { enabled = true },
-          functionLikeReturnTypes = { enabled = true },
-          enumMemberValues = { enabled = true },
+        javascript = {
+          inlayHints = {
+            parameterNames = { enabled = "all" },
+            parameterTypes = { enabled = true },
+            variableTypes = { enabled = true },
+            propertyDeclarationTypes = { enabled = true },
+            functionLikeReturnTypes = { enabled = true },
+            enumMemberValues = { enabled = true },
+          },
         },
       },
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
@@ -106,18 +69,22 @@ return {
 
           local param = unpack(result)
           local id, command, payload = unpack(param)
-          ts_client:exec_cmd({
-            title = 'vue_request_forward', -- You can give title anything as it's used to represent a command in the UI, `:h Client:exec_cmd`
-            command = 'typescript.tsserverRequest',
-            arguments = {
-              command,
-              payload,
+          ts_client:exec_cmd(
+            {
+              title = 'vue_request_forward', -- You can give title anything as it's used to represent a command in the UI, `:h Client:exec_cmd`
+              command = 'typescript.tsserverRequest',
+              arguments = {
+                command,
+                payload,
+              },
             },
-          }, { bufnr = context.bufnr }, function(_, r)
+            { bufnr = context.bufnr },
+            function(_, r)
               local response_data = { { id, r.body } }
               ---@diagnostic disable-next-line: param-type-mismatch
               client:notify('tsserver/response', response_data)
-            end)
+            end
+          )
         end
       end,
       settings = {
@@ -204,7 +171,6 @@ return {
       capabilities = capabilities,
     })
 
-    -- vim.lsp.enable('ts_ls')
     vim.lsp.enable('vue_ls')
     vim.lsp.enable('cssls')
     vim.lsp.enable('lua_ls')
