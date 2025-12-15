@@ -31,26 +31,26 @@ return {
           },
           enableMoveToFileCodeAction = true,
         },
-        typescript = {
-          inlayHints = {
-            parameterNames = { enabled = "all" },      -- "none" | "literals" | "all"
-            parameterTypes = { enabled = true },
-            variableTypes = { enabled = true },
-            propertyDeclarationTypes = { enabled = true },
-            functionLikeReturnTypes = { enabled = true },
-            enumMemberValues = { enabled = true },
-          },
-        },
-        javascript = {
-          inlayHints = {
-            parameterNames = { enabled = "all" },
-            parameterTypes = { enabled = true },
-            variableTypes = { enabled = true },
-            propertyDeclarationTypes = { enabled = true },
-            functionLikeReturnTypes = { enabled = true },
-            enumMemberValues = { enabled = true },
-          },
-        },
+        -- typescript = {
+        --   inlayHints = {
+        --     parameterNames = { enabled = "all" },      -- "none" | "literals" | "all"
+        --     parameterTypes = { enabled = true },
+        --     variableTypes = { enabled = true },
+        --     propertyDeclarationTypes = { enabled = true },
+        --     functionLikeReturnTypes = { enabled = true },
+        --     enumMemberValues = { enabled = true },
+        --   },
+        -- },
+        -- javascript = {
+        --   inlayHints = {
+        --     parameterNames = { enabled = "all" },
+        --     parameterTypes = { enabled = true },
+        --     variableTypes = { enabled = true },
+        --     propertyDeclarationTypes = { enabled = true },
+        --     functionLikeReturnTypes = { enabled = true },
+        --     enumMemberValues = { enabled = true },
+        --   },
+        -- },
       },
       filetypes = { 'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue' },
     })
@@ -87,17 +87,17 @@ return {
           )
         end
       end,
-      settings = {
-        vue = {
-          inlayHints = {
-            destructuredProps = { enabled = true },
-            inlineHandlerLoading = { enabled = true },
-            missingProps = { enabled = true },
-            optionsWrapper = { enabled = true },
-            vBindShorthand = { enabled = true },
-          },
-        },
-      }
+      -- settings = {
+      --   vue = {
+      --     inlayHints = {
+      --       destructuredProps = { enabled = true },
+      --       inlineHandlerLoading = { enabled = true },
+      --       missingProps = { enabled = true },
+      --       optionsWrapper = { enabled = true },
+      --       vBindShorthand = { enabled = true },
+      --     },
+      --   },
+      -- }
     })
 
     vim.lsp.config('cssls', {
